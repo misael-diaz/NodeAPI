@@ -1,18 +1,19 @@
-const express = require("express")
-const lmp = require("./lmp/router")
-const sys = require("./sys/router")
-const router = express.Router()
+const hostname = (cmd) => {
 
-router.use("/lmp", lmp)
-router.use("/sys", sys)
+	if ('hostname' === cmd) {
+		return true
+	}
 
-module.exports = router
+	return false
+}
+
+module.exports = { hostname }
 
 /*
 
 NodeAPI							March 4, 2024
 
-source: index.js
+source: api/services/system.js
 author: @misael-diaz
 
 Copyright (c) 2024 Misael Díaz-Maldonado

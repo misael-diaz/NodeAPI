@@ -1,10 +1,9 @@
 const express = require("express")
-const lmp = require("./lmp/router")
-const sys = require("./sys/router")
+const controller = require("./controller")
+const { run } = controller
 const router = express.Router()
 
-router.use("/lmp", lmp)
-router.use("/sys", sys)
+router.route("/run").post(run)
 
 module.exports = router
 
@@ -12,7 +11,7 @@ module.exports = router
 
 NodeAPI							March 4, 2024
 
-source: index.js
+source: api/sys/router.js
 author: @misael-diaz
 
 Copyright (c) 2024 Misael Díaz-Maldonado
