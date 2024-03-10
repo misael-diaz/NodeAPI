@@ -3,7 +3,7 @@ const proc = require("node:child_process")
 const exec = util.promisify(proc.exec)
 
 const { isEmptyObj } = require("../middleware/validator")
-const { hostname } = require("../services/system")
+const { hostname, uptime } = require("../services/system")
 
 const run = async (req, res) => {
 
@@ -16,6 +16,15 @@ const run = async (req, res) => {
 	const cmd = req.body
 
 	if (hostname(cmd)) {
+		const { stdout, stderr } = await exec(cmd)
+		const msg = `system command ${cmd}`
+		const response = { message: msg, data: stdout }
+		res.status(200).json(response)
+		console.log(response)
+		return
+	}
+
+	if (uptime(cmd)) {
 		const { stdout, stderr } = await exec(cmd)
 		const msg = `system command ${cmd}`
 		const response = { message: msg, data: stdout }

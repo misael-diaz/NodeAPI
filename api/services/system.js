@@ -7,7 +7,16 @@ const hostname = (cmd) => {
 	return false
 }
 
-module.exports = { hostname }
+const uptime = (cmd) => {
+
+	if ('uptime' === cmd) {
+		return true
+	}
+
+	return false
+}
+
+module.exports = { hostname, uptime }
 
 /*
 
