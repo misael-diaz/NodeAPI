@@ -1,17 +1,10 @@
 const { listen } = require("./http")
-const { sendMail } = require("./api/services/mailer")
-const { mail } = require("./config")
-
-const send = async () => {
-	await sendMail(mail.recipient)
-}
 
 const NodeAPI = async () => {
 	await listen()
 }
 
 NodeAPI()
-send()
 
 /*
 

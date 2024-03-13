@@ -1,10 +1,12 @@
 const express = require("express")
 const lmp = require("./lmp/router")
 const sys = require("./sys/router")
+const usr = require("./usr/router")
 const router = express.Router()
 
 router.use("/lmp", lmp)
 router.use("/sys", sys)
+router.use("/usr", usr)
 
 module.exports = router
 
