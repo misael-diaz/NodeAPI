@@ -10,9 +10,9 @@ const signup = async (req, res) => {
 		return;
 	}
 
-	const { firstname, lastname, username, email, password } = req.body;
+	const { firstname, lastname, username, email, password, code } = req.body;
 	console.log(`signup: sending mail to ${email}`);
-	const info = await sendMail(email);
+	const info = await sendMail(email, code);
 
 	const msg = 'on /api/usr/signup route';
 	res.status(200).json({ message: msg, data: info });
