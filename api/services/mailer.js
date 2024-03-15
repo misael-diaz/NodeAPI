@@ -59,13 +59,13 @@ const welcome = (recipient, link) => {
 	return msg;
 }
 
-const etherealMail = async (recipient) => {
+const etherealMail = async (recipient, code) => {
 
 	const msg = {
 		from: `NodeAPI Mailer mailer@mailer.com`,
 		to: recipient,
 		subject: `test`,
-		text: `Welcome to NodeAPI`,
+		text: `Welcome to NodeAPI, your 8-digit code is ${code}`,
 	};
 
 	const transporter = await ethereal();
@@ -80,9 +80,9 @@ const etherealMail = async (recipient) => {
 	});
 }
 
-const sendMail = async (recipient) => {
+const sendMail = async (recipient, code) => {
 
-	const info = await etherealMail(recipient);
+	const info = await etherealMail(recipient, code);
 	const hyperlink = nodemailer.getTestMessageUrl(info);
 	const msg = welcome(recipient, hyperlink);
 	const transporter = await transport();
