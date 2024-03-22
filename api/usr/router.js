@@ -1,8 +1,9 @@
 const express = require("express");
 const controller = require("./controller");
-const { signup, confirmation } = controller;
+const { login, signup, confirmation } = controller;
 const router = express.Router();
 
+router.route("/login").post(login);
 router.route("/signup").post(signup);
 router.route("/confirm").post(confirmation);
 

@@ -1,6 +1,22 @@
 const { isEmptyObj } = require("../middleware/validator");
 const { sendMail } = require("../../api/services/mailer");
 
+const login = (req, res) => {
+
+	console.log(req.body);
+	if (isEmptyObj(req.body)) {
+		const msg = 'login: requires request body';
+		res.status(400).json({ message: msg, data: '' });
+		return;
+	}
+
+	const credentials = req.body;
+	const { email, password } = credentials;
+
+	const msg = 'on /api/usr/login route';
+	res.status(200).json({ message: msg, data: credentials });
+};
+
 const signup = async (req, res) => {
 
 	console.log(req.body);
@@ -34,7 +50,7 @@ const confirmation = (req, res) => {
 	res.status(200).json({ message: msg, data: credentials });
 };
 
-module.exports = { signup, confirmation };
+module.exports = { login, signup, confirmation };
 
 /*
 
