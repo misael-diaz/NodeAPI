@@ -18,7 +18,23 @@ const signup = async (req, res) => {
 	res.status(200).json({ message: msg, data: info });
 }
 
-module.exports = { signup };
+const confirmation = (req, res) => {
+
+	if (isEmptyObj(req.body)) {
+		const msg = 'confirm: requires request body';
+		res.status(400).json({ message: msg, data: '' });
+		return;
+	}
+
+	const credentials = req.body;
+	const { firstname, lastname, username, email, password, code } = credentials;
+	console.log(credentials);
+
+	const msg = 'on /api/usr/confirm route';
+	res.status(200).json({ message: msg, data: credentials });
+};
+
+module.exports = { signup, confirmation };
 
 /*
 
