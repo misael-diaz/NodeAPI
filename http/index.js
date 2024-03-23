@@ -1,19 +1,30 @@
 const https = require("https");
 const fs = require("fs/promises");
 const express = require("express")
+const cookieParser = require("cookie-parser");
 const cors = require("cors")
 const api = require("../api")
 const port = 8080
 const app = express()
 
 app.use(cors())
+app.use(cookieParser());
 app.use(express.text())
 app.use(express.json())
 
 app.use("/api", api)
 
 app.get("/", (req, res) => {
-	res.status(200).json("NodeAPI Executing")
+	const ms = 1000 * 3600;
+	const nm = 'test';
+	const val = 'test';
+	const opt = {
+		maxAge: ms,
+		sameSite: false,
+		httpOnly: true,
+		secure: true
+	};
+	res.status(200).cookie(nm, val, opt).json("NodeAPI Executing");
 })
 
 app.get("*", (req, res) => {

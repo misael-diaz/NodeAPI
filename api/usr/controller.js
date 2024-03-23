@@ -14,7 +14,18 @@ const login = (req, res) => {
 	const { email, password } = credentials;
 
 	const msg = 'on /api/usr/login route';
-	res.status(200).json({ message: msg, data: credentials });
+	const name = 'token';
+	const value = 'token';
+	const ms = 1000 * 3600;
+	const nm = name;
+	const val = value;
+	const opt = {
+		maxAge: ms,
+		sameSite: false,
+		httpOnly: true,
+		secure: true
+	};
+	res.status(200).cookie(nm, val, opt).json({ message: msg, data: credentials });
 };
 
 const signup = async (req, res) => {
