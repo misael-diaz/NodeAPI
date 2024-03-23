@@ -1,5 +1,7 @@
 *.env
 *.swp
+*.key
+*.crt
 TODO
 node
 node_modules
