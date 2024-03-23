@@ -1,3 +1,5 @@
+const https = require("https");
+const fs = require("fs/promises");
 const express = require("express")
 const cors = require("cors")
 const api = require("../api")
@@ -19,7 +21,11 @@ app.get("*", (req, res) => {
 })
 
 const listen = async () => {
-	await app.listen(port)
+	const key = await fs.readFile(`${__dirname}/../certs/selfsigned.key`);
+	const cert = await fs.readFile(`${__dirname}/../certs/selfsigned.crt`);
+	const opt = { key, cert };
+	const server = https.createServer(opt, app);
+	await server.listen(port);
 	console.log(`app listening on port ${port}`)
 }
 
